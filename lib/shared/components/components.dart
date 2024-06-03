@@ -1,7 +1,5 @@
-
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
-import 'package:motion_toast/motion_toast.dart';
 import 'package:news_app/news_pages/webview_page.dart';
 
 
@@ -55,7 +53,6 @@ Widget defaultTextFormField({
 
   ),
 );
-
 
 
 Widget mySeparator()=>Padding(
@@ -123,37 +120,3 @@ void navigateAndFinish(context,widget){
   Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>widget), (route) => false);
 }
 
-void showToast(context,{
-  required String title,
-  required String description,
-  required ToastColorState state,
-  required IconData icon,
-
-})=> MotionToast(
-  icon: icon,
-  title: Text(title),
-  description: Text(description,style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
-  animationType: AnimationType.fromBottom,
-  animationCurve: Curves.decelerate,
-  primaryColor: chooseToastColor(state),
-  dismissable: true,
-).show(context);
-
-enum ToastColorState{success,error,warning}
-
-Color chooseToastColor(ToastColorState state){
-  Color color;
-  switch (state)
-  {
-    case ToastColorState.success:
-       color=Colors.green;
-        break;
-       case ToastColorState.error:
-       color=Colors.red;
-       break;
-    case ToastColorState.warning:
-       color=Colors.amber;
-       break;
-  }
-   return color;
-}

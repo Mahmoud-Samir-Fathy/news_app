@@ -6,17 +6,13 @@ import 'package:news_app/news_layout/news_app/news_states.dart';
 import 'package:news_app/news_pages/search_page.dart';
 import 'package:news_app/shared/components/components.dart';
 
-
 class NewsApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-
     return BlocConsumer<NewsCubit,NewsStates>(
      listener:(context,state){} ,
       builder: (context,state){
        var cubit=NewsCubit.get(context);
-
-
        return
         Scaffold(
           appBar: AppBar(
@@ -27,7 +23,6 @@ class NewsApp extends StatelessWidget{
             }, icon: Icon(Icons.search)),
             IconButton(onPressed: () {
               ApplicationCubit.get(context).changeMode();
-
             },
                 icon: Icon(Icons.brightness_4_outlined))
           ],

@@ -13,7 +13,6 @@ class Business_Page extends StatelessWidget{
     return BlocConsumer<NewsCubit,NewsStates>(
       listener: (context,state){},
       builder: (context,state){
-
         var list=NewsCubit.get(context).business;
         return articleBuilder(list,context);
       },

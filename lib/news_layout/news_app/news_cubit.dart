@@ -8,9 +8,7 @@ import 'package:news_app/shared/network/remote/dio_helper.dart';
 
 
 class NewsCubit extends Cubit<NewsStates>{
-
   NewsCubit():super(NewsInitialState());
-
   static NewsCubit get(context)=>BlocProvider.of(context);
 
   int currentIndex=0;
@@ -19,7 +17,6 @@ class NewsCubit extends Cubit<NewsStates>{
     BottomNavigationBarItem(icon:Icon(Icons.business) ,label:'Business' ),
     BottomNavigationBarItem(icon:Icon(Icons.rocket_outlined) ,label:'TechCrunch' ),
   ];
-
   List<Widget> NewsScreens=[
     Tesla_Page(),
     Business_Page(),
@@ -31,9 +28,7 @@ class NewsCubit extends Cubit<NewsStates>{
     if(index==1) getBusiness();
     if(index==2) getTechCrunch();
     emit(NewsChangeBottomNavBar());
-
   }
-
   List<dynamic> tesla=[];
 
   void getTesla(){
@@ -42,7 +37,7 @@ class NewsCubit extends Cubit<NewsStates>{
         url: 'v2/everything',
         query: {
           'q':'tesla',
-          'from':'2024-01-14',
+          'from':'2024-05-03',
           'sortBy':'publishedAt',
           'apiKey':'e11e0e403f644fd69757cce4ee9f46d5'
         }).then((value) {
@@ -54,13 +49,9 @@ class NewsCubit extends Cubit<NewsStates>{
 
     }) ;
   }
-
   List<dynamic> business=[];
-
   void getBusiness(){
-
     emit(NewsGetBusinessLoadingState());
-
     if(business.length==0){
       DioHelper.getData(
           url: 'v2/top-headlines',
@@ -74,16 +65,13 @@ class NewsCubit extends Cubit<NewsStates>{
       }).catchError((error){
         emit(NewsGetBusinessErrorState(error.toString()));
         print(error.toString());
-
       }) ;
     }else {
       emit(NewsGetBusinessSuccessState());
     }
-
   }
 
   List<dynamic> techcrunch =[];
-
   void getTechCrunch (){
     emit(NewsGetTechCrunchLoadingState());
     if(techcrunch.length==0){
@@ -98,12 +86,10 @@ class NewsCubit extends Cubit<NewsStates>{
       }).catchError((error){
         emit(NewsGetTechCrunchErrorState(error.toString()));
         print(error.toString());
-
       }) ;
     } else {
       emit(NewsGetTechCrunchSuccessState());
     }
-
   }
 
   List<dynamic> search =[];
@@ -120,9 +106,6 @@ class NewsCubit extends Cubit<NewsStates>{
       }).catchError((error){
         emit(NewsGetSearchErrorState(error.toString()));
         print(error.toString());
-
       }) ;
-
   }
-
 }

@@ -13,7 +13,6 @@ class Tesla_Page extends StatelessWidget{
     return BlocConsumer<NewsCubit,NewsStates>(
       listener: (context,state){},
       builder: (context,state){
-
         var list=NewsCubit.get(context).tesla;
         return articleBuilder(list,context);
       },
